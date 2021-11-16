@@ -1,0 +1,13 @@
+@import "../../common/index.wxss";
+
+.weui-agree__link {
+  display: inline;
+  color: var(--weui-LINK);
+}
+
+.navigator-right{
+  /* padding-right: 13px; */
+  padding-right: 13px;
+  position: relative;
+  font-size: small;
+}
