@@ -29,16 +29,27 @@ Page({
         })
       })
     }
+    //获取当前日期
+    var timestamp = Date.parse(new Date());
+    var date = new Date(timestamp);
+    //获取年份  
+    var Y =date.getFullYear();
+    //获取月份  
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1);
+    //获取当日日期 
+    var D = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    var str = Y+"-"+M+'-'+D+'.json';
+ 
     //加载新闻
-    const apiHost = 'https://api.dzurl.top';
+    const apiHost = 'https://api.apiopen.top/getWangYiNews';
     const apiHost2 = 'https://cdn.jsdelivr.net/gh/hu-qi/trending-in-one/raw';
     const apiHost3 = 'http://www.coderutil.com/api/resou/v1';
 
     this.weiboNews('微博', 'weibo', false, apiHost3 + '/weibo', 'https://s.weibo.com/weibo?Refer=new_time&q=')
     this.baiduNews('百度', 'baidu', false, apiHost3 + '/baidu', 'https://wap.baidu.com/s?word=');
-    this.zhihuNews('知乎', 'zhihu', false, apiHost2 + '/zhihu-search/2021-11-16.json', 'https://www.zhihu.com/search?type=content&q=');
-    this.zhihuQuestion('知乎问题', 'zhihuquestion', false, apiHost2 + '/zhihu-questions/2021-11-16.json', 'https://www.zhihu.com/search?type=content&q=');
-    this.sogouNews('搜狗', 'sougou', false, apiHost + '/news/sogou', 'https://wap.sogou.com/web/searchList.jsp?keyword=');
+    this.zhihuNews('知乎', 'zhihu', false, apiHost2 + '/zhihu-search/'+str, 'https://www.zhihu.com/search?type=content&q=');
+    this.zhihuQuestion('知乎问题', 'zhihuquestion', false, apiHost2 + '/zhihu-questions/'+str, 'https://www.zhihu.com/search?type=content&q=');
+    this.wangyiNews('网易', 'wangyi', false, apiHost, 'https://wap.sogou.com/web/searchList.jsp?keyword=');
     this.toutiaoNews('今日头条', 'toutiao', false, apiHost3 + '/toutiao', 'https://so.toutiao.com/search?dvpf=pc&source=input&keyword=');
       
   },
@@ -229,7 +240,7 @@ Page({
     });
   },
 
-  sogouNews(itemName, itemId, open, url, page) {
+  wangyiNews(itemName, itemId, open, url, page) {
     let me = this;
     return new Promise((resolve, reject) => {
       wx.request({
@@ -250,10 +261,10 @@ Page({
           }
           
           //子项
-          res.data.ret.forEach(element => {
+          res.data.result.forEach(element => {
             item.pages.push({
               title: element.title,
-              url: element.url,
+              url: element.path,
               hot: element.hot ? element.hot : ''
             })
           });
