@@ -46,12 +46,21 @@ Page({
     const apiHost3 = 'http://www.coderutil.com/api/resou/v1';
 
     this.weiboNews('微博', 'weibo', false, apiHost3 + '/weibo', 'https://s.weibo.com/weibo?Refer=new_time&q=')
-    this.baiduNews('百度', 'baidu', false, apiHost3 + '/baidu', 'https://wap.baidu.com/s?word=');
-    this.zhihuNews('知乎', 'zhihu', false, apiHost2 + '/zhihu-search/'+str, 'https://www.zhihu.com/search?type=content&q=');
-    this.zhihuQuestion('知乎问题', 'zhihuquestion', false, apiHost2 + '/zhihu-questions/'+str, 'https://www.zhihu.com/search?type=content&q=');
-    this.wangyiNews('网易', 'wangyi', false, apiHost, 'https://wap.sogou.com/web/searchList.jsp?keyword=');
-    this.toutiaoNews('今日头条', 'toutiao', false, apiHost3 + '/toutiao', 'https://so.toutiao.com/search?dvpf=pc&source=input&keyword=');
-      
+      .then(() => {
+        this.baiduNews('百度', 'baidu', false, apiHost3 + '/baidu', 'https://wap.baidu.com/s?word=');
+      })
+      .then(() => {
+        this.zhihuNews('知乎', 'zhihu', false, apiHost2 + '/zhihu-search/'+str, 'https://www.zhihu.com/search?type=content&q=');
+      })
+      .then(() => {
+        this.zhihuQuestion('知乎问题', 'zhihuquestion', false, apiHost2 + '/zhihu-questions/'+str, 'https://www.zhihu.com/search?type=content&q=');
+      })
+      .then(() => {
+        this.wangyiNews('网易', 'wangyi', false, apiHost, 'https://wap.sogou.com/web/searchList.jsp?keyword=');
+      })
+      .then(() => {
+        this.toutiaoNews('今日头条', 'toutiao', false, apiHost3 + '/toutiao', 'https://so.toutiao.com/search?dvpf=pc&source=input&keyword=');
+      })
   },
   weiboNews(itemName, itemId, open, url, page) {
     let me = this;
