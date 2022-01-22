@@ -8,7 +8,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "热榜",
+    "navigationBarTitleText": "热搜搜吧",
     "navigationBarTextStyle":"black"
   },
   "style": "v2",
